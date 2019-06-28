@@ -1,0 +1,31 @@
+﻿@model IEnumerable<IBS2.Models.Zahtevi>
+
+@{
+    ViewBag.Title = "Zahtevi";
+}
+
+<h2>Lista zahteva</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Šifra zahteva</th>
+        <th>Naziv banke</th>
+        <th>Opis zahteva</th> 
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZahtevID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Banka.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpisZahteva)
+        </td>
+    </tr>
+}
+
+</table>

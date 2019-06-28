@@ -1,0 +1,40 @@
+﻿@using IBS2.Models
+@{
+    ViewBag.Title = "Vlasnička struktura banaka";
+}
+
+<h2>Lista vlasničke strukture banaka</h2>
+
+
+
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <td>Naziv</td>
+            <td>Sedište</td>
+            <td>Vlasnik banke</td>
+            <td>Procenat(%)</td>
+
+        </tr>
+
+    </thead>
+    @foreach (VlasnickaStrukturaBanakaViewModel vlasnik in Admin.ListaVlasnika1())
+    {
+
+        <tr>
+
+            <td>@vlasnik.NazivBanaka</td>
+            <td>@vlasnik.Sediste</td>
+            <td>@vlasnik.NazivVlasnika</td>
+            <td>@vlasnik.Procenat</td>
+
+
+        </tr>
+    }
+</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "DžogerTim";
+}
+
+<div class="jumbotron">
+    <h1 class="text-center">INFORMACIONI SISTEM BANAKA</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Stranica za logovanje</h2>
+        <p>
+            Stranica za logovanje korisnika
+        </p>
+        @Html.ActionLink("Uloguj se", "LogInView", "LogIn")
+    </div>
+
+    <div class="col-md-4 col-md-offset-4">
+        <h2>Registraciona forma</h2>
+        <p>Stranica za registraciju novih korisnika</p>
+        @Html.ActionLink("Registruj se", "Register", "Register")
+    </div>
+</div>

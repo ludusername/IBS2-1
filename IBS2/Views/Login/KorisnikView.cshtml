@@ -1,0 +1,92 @@
+﻿@using IBS2.Models;
+@model IBS2.Models.Zahtevi
+@{
+    ViewBag.Title = "Korisnik " + @Session["korisnik"].ToString();
+}
+
+<div class="container">
+    <h3> @Session["korisnik"].ToString(), nalazite se na Vašoj korisničkoj strani i Vaš korisnički ID je: <span id="korisnikID">@Session["korisnikId"]</span></h3>
+    <div class="row">
+        @if (TempData["brojZahteva"] != null)
+        {
+            <h4>Vaš zahtev je uspešno poslat. Zahtev je zaveden pod brojem @TempData["brojZahteva"].</h4>
+        }
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h2>Zahtev</h2>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        @using (Html.BeginForm("KorisnikView", "LogIn", FormMethod.Post, new { @class = "form" }))
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.KorisnikID, "Šifra korisnika")
+                                @Html.TextBoxFor(m => m.KorisnikID, null, new { @class = "form-group", placeholder = "Unesite korisnički ID", @id = "unetKorisnikID" })
+                                <br />
+                                <label id="labelKorisnikID"></label>
+                            </div>
+                            <div class="form-group">
+                                <p>Lista banaka</p>
+                                @Html.DropDownList("listaBanaka12", (IEnumerable<SelectListItem>)ViewBag.listabanaka, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <p>Tekst zahteva</p>
+
+                                @Html.TextAreaFor(m=>m.OpisZahteva, new { @class = "form-control", rows = "10", required = "" })
+                                @Html.ValidationMessageFor(m => m.OpisZahteva, "", new { @class = "text-danger" })
+                            </div>
+                            <input type="button" class="btn btn-default" value="Pošalji zahtev" onclick="posalji()" id="btnPosalji" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <p>
+                @Html.ActionLink("Pregled zahteva korisnika", "ListaZahteva", new { sifra = Session["korisnikId"] })
+            </p>
+            <p>
+                @Html.ActionLink("Pregled liste banaka", "ListaBanaka1", "Login")
+            </p>
+            <p>
+                @Html.ActionLink("Pregled finansijskog stanja banaka", "ListaBanaka2", "Login")
+
+            </p>
+            <p>
+                @Html.ActionLink("Pregled aktivnih banaka", "ListaAktivnihBanaka", "Login")
+            </p>
+            <p>
+                @Html.ActionLink("Pregled neaktivnih banaka", "ListaNEAktivnihBanaka", "Login")
+            </p>
+            <p>
+                @Html.ActionLink("Pregled vrste banaka", "ListaVrstahBanaka", "Login")
+            </p>
+            <p>
+                @Html.ActionLink("Pregled statusa banaka", "ListaStatusaBanaka", "Login")
+            </p>
+            <p>
+                @Html.ActionLink("Pregled vlasništva banaka", "ListaVlasnickeStruktureBanaka", "Login")
+            </p>
+            <p>
+                <a href="http://www.nbs.rs">Narodna Banka Srbije</a>
+            </p>
+            <p>
+                <a href="http://www.imf.org">Međunarodni monetarni fond</a>
+            </p>
+            <p>
+                <a href="http://www.worldbank.org">Svetska banka</a>
+            </p>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/validacija.js"></script>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate-vsdoc.js"></script>

@@ -1,0 +1,62 @@
+﻿@using IBS2.Models
+
+@{
+    ViewBag.Title = "Pregled zahteva";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Pregled zahteva</h2>
+        </div>
+        <div class="col-md-2 glavni-panel-link">
+            @Html.ActionLink("Povratak na glavni panel", "AdminView")
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <td>Broj zahteva</td>
+                        <td>Korisnik</td>
+                        <td>Banka</td>
+                    </tr>
+
+                </thead>
+                @foreach (KombinovaniViewModel zahtevi in Admin.ListaZahteva())
+                {
+
+                <tr>
+
+                    <td>@zahtevi.ZahtevID</td>
+                    <td>@zahtevi.NazivKorisnika</td>
+                    <td>@zahtevi.Naziv</td>
+                    
+                    <td>@Html.ActionLink("Prikaži zahtev", "PrikaziZahtevPoSifri", new { sifra = zahtevi.ZahtevID })</td>
+                    
+
+
+                </tr>
+                }
+            </table>
+        </div>
+        <div class="col-md-6">
+            @if (TempData["Provera"] != null)
+            {
+                <p>Prikaz zahteva broj:@TempData["ZahtevID"]</p>
+                <p>
+                    @Model.OpisZahteva
+                </p>
+                <p>Odgovor korisniku @Model.NazivKorisnika na e-mail:<a href="mailto:@Model.Email">@Model.Email</a></p>
+             
+
+            }
+
+        </div>
+    </div>
+</div>
+

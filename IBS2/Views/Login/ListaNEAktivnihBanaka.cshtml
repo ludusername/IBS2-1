@@ -1,0 +1,29 @@
+﻿@using IBS2.Models
+@{
+    ViewBag.Title = "Neaktivne banke";
+}
+
+<h2>Lista neaktivnih banaka</h2>
+
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <td>Naziv</td>
+            <td>Sedište</td>
+
+
+        </tr>
+
+    </thead>
+    @foreach (Banka banka in Admin.ListaNEAktivnihBanaka())
+    {
+
+        <tr>
+
+            <td>@banka.Naziv</td>
+            <td>@banka.Sediste</td>
+
+
+        </tr>
+    }
+</table>

@@ -1,0 +1,56 @@
+﻿@model IBS2.Models.LogInView
+
+@{
+    ViewBag.Title = "LogInView";
+}
+<div class="form-horizontal">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2>Login</h2>
+            </div>
+            <div class="panel-body">
+                <div>
+                    @using (Html.BeginForm("LogInView", "LogIn", FormMethod.Post, new { @class = "form" }))
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.NazivKorisnika, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.NazivKorisnika, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.NazivKorisnika, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Lozinka, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.PasswordFor(m => m.Lozinka, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Lozinka, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <input type="submit" value="Uloguj se" class="btn btn-danger" />
+                    }
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-2">
+                            <label class="field-validation-error">@Html.DisplayFor(m => m.LoginError)</label>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>

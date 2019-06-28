@@ -1,0 +1,171 @@
+﻿
+@model IBS2.Models.Banka
+@{
+    ViewBag.Title = "AdminView";
+}
+
+@if (TempData["Naziv"] != null)
+{
+    <div class="alert alert-success">Nova banka:@TempData["Naziv"] je uspešno dodata</div>
+}
+@if (TempData["Izmena"] != null)
+{
+    <div class="alert alert-success">Uspešno izmenjeni podaci banke:@TempData["Izmena"]</div>
+}
+
+    <div class="container panel-container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Admin panel </div>
+                    <div class="panel-body">
+                        <div class="panel panel-primary">
+                            <div class="panel panel-heading">Dodaj banku</div>
+                            <div class="panel-body">
+                                @using (Html.BeginForm("AdminView", "Admin", FormMethod.Post, new { @class = "form" }))
+                                {
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Naziv, "Naziv")
+                                        @Html.TextBoxFor(m => m.Naziv, null, new { @class = "form-control", placeholder = "Naziv banke" })
+                                        @Html.ValidationMessageFor(m => m.Naziv, null, new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Sediste, "Sedište")
+                                        @Html.TextBoxFor(m => m.Sediste, null, new { @class = "form-control", placeholder = "sedište" })
+                                        @Html.ValidationMessageFor(m => m.Sediste, null, new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.GodinaOsnivanja, "Godina osnivanja")
+                                        @Html.TextBoxFor(m => m.GodinaOsnivanja, null, new { @class = "form-control", placeholder = "godina-osnivanja-banke" })
+                                        @Html.ValidationMessageFor(m => m.GodinaOsnivanja, null, new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Vlasnistvo, "Vlasništvo")
+                                        @Html.RadioButtonFor(m => m.Vlasnistvo, "domaca") domaća
+                                        @Html.RadioButtonFor(m => m.Vlasnistvo, "strana")strana
+                                        @Html.ValidationMessageFor(m => m.Vlasnistvo, null, new { @class = "text-danger" })
+
+                                    </div>
+
+                                    {
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.Godisnjiprofit, "Godišnji profit")
+                                            @Html.TextBoxFor(m => m.Godisnjiprofit, null, new { @class = "form-control", placeholder = "godišnji-profit-banke" })
+                                            @Html.ValidationMessageFor(m => m.Godisnjiprofit, null, new { @class = "text-danger" })
+                                        </div>
+                                    }
+
+                                    {
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.UkupnaAktivaiUkupniDug, "Ukupna aktiva i ukupni dug")
+                                            @Html.TextBoxFor(m => m.UkupnaAktivaiUkupniDug, null, new { @class = "form-control", placeholder = "aktiva-dug-banke" })
+                                            @Html.ValidationMessageFor(m => m.UkupnaAktivaiUkupniDug, null, new { @class = "text-danger" })
+                                        </div>
+                                    }
+
+
+                                    <div class="form-group">
+                                        <b>Status banke:</b>@Html.DropDownList("StatusBanke", (IEnumerable<SelectListItem>)ViewBag.statusibanke, new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group">
+                                        <b>Vrsta banke:</b>@Html.DropDownList("VrstaBanke", (IEnumerable<SelectListItem>)ViewBag.vrstebanaka, new { @class = "form-control" })
+                                    </div>
+                                    <input type="submit" class="btn btn-default" value="Dodaj" />
+
+                                }
+                            </div>
+                        </div>
+                        @if (TempData["Sifra"] != null)
+                        {
+                            <div class="alert alert-success">Status licence banke uspešno promenjen i ona je sada: @TempData["Sifra"]</div>
+                        }
+                        <div class="panel panel-primary">
+                            <div class="panel panel-heading">Izmena podataka banke:</div>
+                            <div class="panel-body">
+                                @using (Html.BeginForm("PrikaziBanku", "Admin", FormMethod.Post, new { @class = "form" }))
+                                {
+                                    <div class="form-group">
+                                        @Html.DropDownList("listaBanaka", (IEnumerable<SelectListItem>)ViewBag.banke, new { @class = "form-control" })
+
+                                    </div>
+
+                                    <input type="submit" class="btn btn-default" name="BtnSubmit" value="Prikaži" />
+                                    <input type="submit" class="btn btn-default" name="BtnSubmit" value="Promeni status licence" />
+
+                                }
+                            </div>
+                        </div>
+                        @if (TempData["IzmenaVlasnici"] != null)
+                        {
+                            <div class="alert alert-success">Vlasnička struktura banke je uspešno promenjena.</div>
+                        }
+                        <div class="panel panel-primary">
+                            <div class="panel panel-heading">Prikaz i izmena vlasništva banke: </div>
+                            <div class="panel-body">
+                                @using (Html.BeginForm("PrikaziVlasnistvoView", "Admin", FormMethod.Post, new { @class = "form" }))
+                                {
+                                    <div class="form-group">
+                                        @Html.DropDownList("listaBanaka1", (IEnumerable<SelectListItem>)ViewBag.bankevlasnickastruktura, new { @class = "form-control" })
+
+                                    </div>
+
+                                    <input type="submit" class="btn btn-default" name="BtnSubmit" value="Prikaži vlasništvo" />
+
+
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <p>
+                    @Html.ActionLink("Pregled zahteva", "PregledZahteva", "Admin")
+                </p>
+                <p>
+                    @Html.ActionLink("Pregled liste banaka", "ListaBanaka1", "Login")
+                </p>
+                <p>
+                    @Html.ActionLink("Pregled finansijskog stanja banaka", "ListaBanaka2", "Login")
+
+                </p>
+                <p>
+                    @Html.ActionLink("Pregled aktivnih banaka", "ListaAktivnihBanaka", "Login")
+                </p>
+                <p>
+                    @Html.ActionLink("Pregled neaktivnih banaka", "ListaNEAktivnihBanaka", "Login")
+                </p>
+                <p>
+                    @Html.ActionLink("Pregled vrste banaka", "ListaVrstahBanaka", "Login")
+                </p>
+                <p>
+                    @Html.ActionLink("Pregled statusa banaka", "ListaStatusaBanaka", "Login")
+                </p>
+                <p>
+                    @Html.ActionLink("Pregled vlasništva banaka", "ListaVlasnickeStruktureBanaka", "Login")
+                </p>
+                <p>
+                    <a href="http://www.nbs.rs">Narodna Banka Srbije</a>
+                </p>
+                <p>
+                    <a href="http://www.imf.org">Međunarodni monetarni fond</a>
+                </p>
+                <p>
+                    <a href="http://www.worldbank.org">Svetska banka</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+

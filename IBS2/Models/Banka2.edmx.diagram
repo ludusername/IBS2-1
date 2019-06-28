@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8bb387bd6554449fbdde893799cb55d1" Name="Diagram1">
+        <EntityTypeShape EntityType="InformacioniSistemBanakaModel.Banka" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InformacioniSistemBanakaModel.Korisnici" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="InformacioniSistemBanakaModel.Licenca" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="InformacioniSistemBanakaModel.StatusBanke" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InformacioniSistemBanakaModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="InformacioniSistemBanakaModel.Uloga" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InformacioniSistemBanakaModel.VlasnickaStrukturaBanke" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InformacioniSistemBanakaModel.VrstaBanke" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InformacioniSistemBanakaModel.Zahtevi" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="InformacioniSistemBanakaModel.FK_Banka_Licenca" ManuallyRouted="false" />
+        <AssociationConnector Association="InformacioniSistemBanakaModel.FK_Banka_StatusBanke" ManuallyRouted="false" />
+        <AssociationConnector Association="InformacioniSistemBanakaModel.FK_Banka_VrstaBanke" ManuallyRouted="false" />
+        <AssociationConnector Association="InformacioniSistemBanakaModel.FK_VlasnickaStrukturaBanke_Banka" ManuallyRouted="false" />
+        <AssociationConnector Association="InformacioniSistemBanakaModel.FK_Zahtevi_Banka" ManuallyRouted="false" />
+        <AssociationConnector Association="InformacioniSistemBanakaModel.FK_Korisnici_Uloga" ManuallyRouted="false" />
+        <AssociationConnector Association="InformacioniSistemBanakaModel.FK_Zahtevi_Korisnici" ManuallyRouted="false" />
+        <AssociationConnector Association="InformacioniSistemBanakaModel.FK_VlasnickaStrukturaBanke_VlasnickaStrukturaBanke" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

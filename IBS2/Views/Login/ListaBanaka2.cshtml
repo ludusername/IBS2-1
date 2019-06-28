@@ -1,0 +1,31 @@
+﻿@using IBS2.Models
+@{
+    ViewBag.Title = "Finansijski izveštaj banaka";
+}
+
+<h2>Finansijski izveštaj banaka</h2>
+
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <td>Naziv</td>
+            <td>Vlasništvo</td>
+            <td>Ukupna aktiva i ukupni dug</td>
+            <td>Godišnji profit</td>
+            
+        </tr>
+
+    </thead>
+    @foreach (Banka banka in Admin.ListaBanaka())
+    {
+
+        <tr>
+
+            <td>@banka.Naziv</td>
+            <td>@banka.Vlasnistvo</td>
+            <td>@banka.UkupnaAktivaiUkupniDug</td>
+            <td>@banka.Godisnjiprofit</td>
+            
+        </tr>
+    }
+</table>
